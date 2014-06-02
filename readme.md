@@ -30,7 +30,6 @@ limit is the maximum number of books to show
 pageCurl is whether or not to show a page curl on the image
 imageSize is the size of the image retrieved. Possible options are thumb or smallThumb
 layout is the template to use to display the books. It can be any file name that is contined in layouts. The included templates are grid, description, and column
-credits is whether or not to display a credit to the author of the plugin
 
     googleBookshelves.showShelf(
       {
@@ -40,8 +39,7 @@ credits is whether or not to display a credit to the author of the plugin
         limit: 10,
         pageCurl: false,
         imageSize: "thumb",
-        layout: "grid",
-        credits: false
+        layout: "grid"
       }
     );
 

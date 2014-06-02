@@ -9,7 +9,7 @@ var googleBookshelves = (function() {
 
   var showShelf = function(options) {
     initialize(options);
-    getUrl();
+    getBooks();
     $(container).html(shelfNumber);
   };
 
@@ -23,6 +23,15 @@ var googleBookshelves = (function() {
     imageSize = options.imageSize || "thumb";
   };
 
+  var getBooks = function() {
+    $.ajax({
+      url: getUrl()
+    })
+      .done(function(data) {
+        console.log(data);
+      });
+  };
+
   var getUrl = function() {
     return "https://www.googleapis.com/books/v1/users/" + idNumber + "/bookshelves/" + shelfNumber + "/volumes";
   };
@@ -33,6 +42,7 @@ var googleBookshelves = (function() {
 
   public._private = {
     initialize: initialize,
+    getBooks: getBooks,
     getUrl: getUrl
   };
 

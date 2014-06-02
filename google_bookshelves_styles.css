@@ -1,0 +1,47 @@
+.google_bookshelves_book_title {
+	position: absolute;
+	top: 0px;
+	color: #EEEEEE;
+	padding: 10px 7px 0px 17px;
+	font-size: .9em;
+	line-height: 1.2em;
+	width: 100px;
+}
+
+/*Description Layout*/
+.google_bookshelves_shelf_description
+.google_bookshelves_book {
+	clear: left;
+	margin-bottom: 20px;
+}
+.google_bookshelves_shelf_description
+.google_bookshelves_image {
+	float: left;
+	margin-right: 10px;
+}
+.google_bookshelves_shelf_description
+.google_bookshelves_text {
+}
+.google_bookshelves_shelf_description
+.google_bookshelves_title {
+	font-weight: bold;
+}
+.google_bookshelves_shelf_description
+.google_bookshelves_authors {
+	font-style: italic;
+	font-size: .8em;
+}
+
+/*Grid Layout*/
+.google_bookshelves_shelf_grid
+.google_bookshelves_book {
+	display: inline;
+	margin-right: 10px;
+}
+
+/*Column Layout (also used for widget layout)*/
+.google_bookshelves_shelf_column
+.google_bookshelves_book {
+	position: relative;
+	margin: 10px;
+}

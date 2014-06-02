@@ -1,16 +1,14 @@
-<div class="google_bookshelves_shelf_description">
-    {{#each books}}
-    <div class="google_bookshelves_book">
-        <div class="google_bookshelves_image">
-            <a href="{{link}}" target="_blank"><img src="{{image}}"/></a>
-        </div>
-    <div class="google_bookshelves_text">
-        <div class="google_bookshelves_title">{{title}}</div>
-        <div class="google_bookshelves_authors">
-            by
-            {{#each authors}}{{#if @index}}, {{/if}}{{this}}{{/each}}
-        </div>
-        <div class="google_bookshelves_description">{{description}}</div>
+{{#each books}}
+<div class="google_bookshelves_book">
+    <div class="google_bookshelves_image">
+        <a href="{{link}}" target="_blank"><img src="{{image}}"/></a>
     </div>
-    {{/each}}
+<div class="google_bookshelves_text">
+    <div class="google_bookshelves_title">{{title}}</div>
+    <div class="google_bookshelves_authors">
+        by
+        {{#each authors}}{{#if @index}}, {{/if}}{{this}}{{/each}}
+    </div>
+    <div class="google_bookshelves_description">{{description}}</div>
 </div>
+{{/each}}

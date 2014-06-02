@@ -23,6 +23,7 @@ var googleBookshelves = (function() {
   };
 
   var displayBooks = function() {
+    $(container).addClass('google_bookshelves_shelf_' + layout);
     getBooks(function(data) {
       getTemplateAjax('layouts/' + layout + '.handlebars', function(template) {
         $(container).append(template(data));

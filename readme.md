@@ -31,7 +31,7 @@ To-do List
 
 Dependencies
 =====================
-It does require jquery for the ajax call.
+It requires jquery for the ajax call, and handlebars for the templating.
 
 Copyright
 =====================

@@ -3,7 +3,6 @@ var googleBookshelves = (function() {
   var shelfNumber;
   var container;
   var limit;
-  var random;
   var pageCurl;
   var imageSize;
   var layout;
@@ -19,7 +18,6 @@ var googleBookshelves = (function() {
     shelfNumber = options.shelfNumber || "Reading Now";
     container = options.container || "#readingNow";
     limit = options.limit || 10;
-    random = (typeof options.random !== 'undefined')? options.random: false;
     pageCurl = (typeof options.pageCurl !== 'undefined')? options.pageCurl: false;
     imageSize = options.imageSize || "thumb";
     layout = options.layout || "grid";

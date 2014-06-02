@@ -6,6 +6,7 @@ var googleBookshelves = (function() {
   var random;
   var pageCurl;
   var imageSize;
+  var layout;
 
   var showShelf = function(options) {
     initialize(options);
@@ -20,11 +21,12 @@ var googleBookshelves = (function() {
     random = (typeof options.random !== 'undefined')? options.random: false;
     pageCurl = (typeof options.pageCurl !== 'undefined')? options.pageCurl: false;
     imageSize = options.imageSize || "thumb";
+    layout = options.layout || "grid";
   };
 
   var displayBooks = function() {
     getBooks(function(data) {
-      getTemplateAjax('layouts/description.handlebars', function(template) {
+      getTemplateAjax('layouts/' + layout + '.handlebars', function(template) {
         $(container).html(template(data));
       });
     });

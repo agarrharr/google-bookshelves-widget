@@ -1,6 +1,6 @@
 var googleBookshelves = (function() {
   var idNumber;
-  var shelf;
+  var shelfNumber;
   var container;
   var limit;
   var random;
@@ -9,12 +9,13 @@ var googleBookshelves = (function() {
 
   var showShelf = function(options) {
     initialize(options);
-    $(container).html(shelf);
+    getUrl();
+    $(container).html(shelfNumber);
   };
 
   var initialize = function(options) {
     idNumber = options.idNumber || "113720634485746776434";
-    shelf = options.shelf || "Reading Now";
+    shelfNumber = options.shelfNumber || "Reading Now";
     container = options.container || "#readingNow";
     limit = options.limit || 10;
     random = (typeof options.random !== 'undefined')? options.random: false;
@@ -22,12 +23,17 @@ var googleBookshelves = (function() {
     imageSize = options.imageSize || "thumb";
   };
 
+  var getUrl = function() {
+    return "https://www.googleapis.com/books/v1/users/" + idNumber + "/bookshelves/" + shelfNumber + "/volumes";
+  };
+
   var public = {
     showShelf: showShelf
   };
 
   public._private = {
-    initialize: initialize
+    initialize: initialize,
+    getUrl: getUrl
   };
 
   return public;

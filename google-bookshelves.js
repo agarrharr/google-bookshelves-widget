@@ -17,7 +17,7 @@ var googleBookshelves = (function() {
     idNumber = options.idNumber || "113720634485746776434";
     shelfNumber = options.shelfNumber || "Reading Now";
     container = options.container || "#readingNow";
-    limit = options.limit || 10;
+    limit = (typeof options.limit !== 'undefined')? options.limit: 10;
     pageCurl = (typeof options.pageCurl !== 'undefined')? options.pageCurl: false;
     imageSize = options.imageSize || "thumb";
     layout = options.layout || "grid";
@@ -27,18 +27,26 @@ var googleBookshelves = (function() {
   var displayBooks = function() {
     getBooks(function(data) {
       getTemplateAjax('layouts/' + layout + '.handlebars', function(template) {
-        $(container).html(template(data));
+        $(container).append(template(data));
       });
     });
   };
 
-  var getBooks = function(callback) {
+  var getBooks = function(callback, startIndex) {
+    var requestLimit = limit || 40;
+    if(typeof startIndex === 'undefined') {
+      startIndex = 0;
+    }
+
     $.ajax({
-      url: getUrl()
+      url: getUrl() + "?maxResults=" + requestLimit + "&startIndex=" + startIndex
     })
       .done(function(data) {
         if(typeof callback === 'function') {
           alterData(data, callback);
+        }
+        if(data.items.length === requestLimit) {
+          getBooks(callback, startIndex + requestLimit + 1);
         }
       });
   };
@@ -57,9 +65,11 @@ var googleBookshelves = (function() {
       book.authors = volume.authors;
       book.description = volume.description;
       book.link = volume.infoLink;
-      book.image = imageSize === "thumb"? volume.imageLinks.thumbnail: volume.imageLinks.smallThumbnail;
-      if(!pageCurl) {
-        book.image = book.image.replace('edge=curl', 'edge=nocurl');
+      if(typeof volume.imageLinks !== 'undefined') {
+        book.image = imageSize === "thumb"? volume.imageLinks.thumbnail: volume.imageLinks.smallThumbnail;
+        if(!pageCurl) {
+          book.image = book.image.replace('edge=curl', 'edge=nocurl');
+        }
       }
       options.books.push(book);
     }

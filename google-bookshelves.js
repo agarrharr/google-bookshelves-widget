@@ -74,10 +74,12 @@ var googleBookshelves = (function() {
       book.description = volume.description;
       book.link = volume.infoLink;
       if(typeof volume.imageLinks !== 'undefined') {
-        book.image = imageSize === "thumb"? volume.imageLinks.thumbnail: volume.imageLinks.smallThumbnail;
+        book.image = (imageSize === "thumb")? volume.imageLinks.thumbnail: volume.imageLinks.smallThumbnail;
         if(!pageCurl) {
           book.image = book.image.replace('edge=curl', 'edge=nocurl');
         }
+      } else {
+        book.image = (imageSize === 'thumb')? 'images/no_cover_thumb.png': 'images/no_cover_smallthumb.png';
       }
       options.books.push(book);
     }

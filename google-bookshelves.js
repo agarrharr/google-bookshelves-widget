@@ -9,8 +9,7 @@ var googleBookshelves = (function() {
 
   var showShelf = function(options) {
     initialize(options);
-    getBooks();
-    $(container).html(shelfNumber);
+    displayBooks();
   };
 
   var initialize = function(options) {
@@ -23,18 +22,65 @@ var googleBookshelves = (function() {
     imageSize = options.imageSize || "thumb";
   };
 
-  var getBooks = function() {
+  var displayBooks = function() {
+    getBooks(function(data) {
+      getTemplateAjax('layouts/description.handlebars', function(template) {
+        $(container).html(template(data));
+      });
+    });
+  };
+
+  var getBooks = function(callback) {
     $.ajax({
       url: getUrl()
     })
       .done(function(data) {
-        console.log(data);
+        if(typeof callback === 'function') {
+          alterData(data, callback);
+        }
       });
+  };
+
+  var alterData = function(data, callback) {
+    var options = {};
+    options.books = [];
+    var book;
+    var volume;
+
+    for(var i = 0; i < data.items.length; i++) {
+      book = {};
+      volume = data.items[i].volumeInfo;
+      book.title = volume.title;
+      book.authors = volume.authors;
+      book.description = volume.description;
+      book.link = volume.infoLink;
+      book.image = imageSize === "thumb"? volume.imageLinks.thumbnail: volume.imageLinks.smallThumbnail;
+      options.books.push(book);
+    }
+
+    if(typeof callback === 'function') {
+      callback(options);
+    }
   };
 
   var getUrl = function() {
     return "https://www.googleapis.com/books/v1/users/" + idNumber + "/bookshelves/" + shelfNumber + "/volumes";
   };
+
+  function getTemplateAjax(path, callback) {
+    var source;
+    var template;
+
+    $.ajax({
+      url: path,
+      success: function(data) {
+        source = data;
+        template = Handlebars.compile(source);
+
+        if(callback) callback(template);
+      }
+    });
+  }
 
   var public = {
     showShelf: showShelf

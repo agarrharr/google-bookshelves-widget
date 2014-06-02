@@ -1,12 +1,15 @@
 <div class="google_bookshelves_shelf_description">
-    {{#each book}}
+    {{#each books}}
     <div class="google_bookshelves_book">
         <div class="google_bookshelves_image">
-            <a href="{{infoLink}}" target="_blank">{{imageTitle}}<img src="{{image}}"/></a>
+            <a href="{{link}}" target="_blank"><img src="{{image}}"/></a>
         </div>
     <div class="google_bookshelves_text">
         <div class="google_bookshelves_title">{{title}}</div>
-        <div class="google_bookshelves_authors">by {{authors}}</div>
+        <div class="google_bookshelves_authors">
+            by
+            {{#each authors}}{{#if @index}}, {{/if}}{{this}}{{/each}}
+        </div>
         <div class="google_bookshelves_description">{{description}}</div>
     </div>
     {{/each}}
@@ -14,12 +17,12 @@
 
 <!--div class="google_bookshelves_shelf_grid">
     <div class="google_bookshelves_book">
-        <a href="{{infoLink}}" target="_blank">{{imageTitle}}<img src="{{image}}"/></a>
+        <a href="{{link}}" target="_blank">img src="{{image}}"/></a>
     </div>
 </div>
 
 <div class="google_bookshelves_shelf_column">
-    <div class="google_bookshelves_book"><a href="{{infoLink}}" target="_blank">{{imageTitle}}<img src="{{image}}"/></a></div>
+    <div class="google_bookshelves_book"><a href="{{link}}" target="_blank">img src="{{image}}"/></a></div>
 </div>
 
 <div class="googleBookshelvesCredit">Plugin by <a href="http://www.adamwadeharris.com" target="_blank">Adam Harris</div-->

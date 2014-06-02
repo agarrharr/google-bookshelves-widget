@@ -5,8 +5,6 @@ This plugin allows you to display the books in your Google Books Library
 Description
 =====================
 
-This is currently a work in progress.
-
 With this plugin you can add show off your books from any of the shelves on your Google Books Library. It uses the Google Boooks API to show your Reading Now, Favorites, Have Read, To Read, or your custom shelves. You can also choose the maximum number of books that you want to display.
 
 In order to find your idNumber, visit books.google.com and click "My libary". Then look in the address bar and it should look something like this:
@@ -42,11 +40,6 @@ layout is the template to use to display the books. It can be any file name that
         layout: "grid"
       }
     );
-
-To-do List
-=====================
-
-- Make sure it loads in books correctly
 
 Dependencies
 =====================

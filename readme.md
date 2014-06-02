@@ -14,7 +14,7 @@ Example Usage
 
     googleBookshelves.showShelf(
       {
-        idNumber: "113720634485746776434"
+        idNumber: "113720634485746776434",
         shelf: "Reading Now",
         container: "#readingNow",
         limit: 10,

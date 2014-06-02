@@ -33,9 +33,19 @@ var googleBookshelves = (function() {
   };
 
   var getBooks = function(callback, startIndex) {
-    var requestLimit = limit || 40;
+    var requestLimit;
     if(typeof startIndex === 'undefined') {
       startIndex = 0;
+    }
+    if(limit === 0) {
+      requestLimit = 40;
+    } else if(limit > 40) {
+      requestLimit = limit - startIndex;
+      if(requestLimit > 40) {
+        requestLimit = 40;
+      }
+    } else {
+      requestLimit = limit;
     }
 
     $.ajax({

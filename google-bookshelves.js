@@ -58,6 +58,9 @@ var googleBookshelves = (function() {
       book.description = volume.description;
       book.link = volume.infoLink;
       book.image = imageSize === "thumb"? volume.imageLinks.thumbnail: volume.imageLinks.smallThumbnail;
+      if(!pageCurl) {
+        book.image = book.image.replace('edge=curl', 'edge=nocurl');
+      }
       options.books.push(book);
     }
 

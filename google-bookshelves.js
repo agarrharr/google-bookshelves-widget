@@ -7,6 +7,7 @@ var googleBookshelves = (function() {
   var pageCurl;
   var imageSize;
   var layout;
+  var credits;
 
   var showShelf = function(options) {
     initialize(options);
@@ -22,6 +23,7 @@ var googleBookshelves = (function() {
     pageCurl = (typeof options.pageCurl !== 'undefined')? options.pageCurl: false;
     imageSize = options.imageSize || "thumb";
     layout = options.layout || "grid";
+    credits = (typeof options.credits !== 'undefined')? options.credits: false;
   };
 
   var displayBooks = function() {
@@ -46,6 +48,7 @@ var googleBookshelves = (function() {
   var alterData = function(data, callback) {
     var options = {};
     options.books = [];
+    options.credits = credits;
     var book;
     var volume;
 

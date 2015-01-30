@@ -5,7 +5,7 @@ var googleBookshelves = (function() {
   var limit;
   var pageCurl;
   var imageSize;
-  var layout;
+  var layoutPath;
 
   var showShelf = function(options) {
     initialize(options);
@@ -19,13 +19,13 @@ var googleBookshelves = (function() {
     limit = (typeof options.limit !== 'undefined')? options.limit: 10;
     pageCurl = (typeof options.pageCurl !== 'undefined')? options.pageCurl: false;
     imageSize = options.imageSize || "thumb";
-    layout = options.layout || "grid";
+    layoutPath = options.layoutPath || "";
   };
 
   var displayBooks = function() {
-    $(container).addClass('google_bookshelves_shelf_' + layout);
+    // $(container).addClass('google_bookshelves_shelf_' + layout);
     getBooks(function(data) {
-      getTemplateAjax('layouts/' + layout + '.handlebars', function(template) {
+      getTemplateAjax(layoutPath, function(template) {
         $(container).append(template(data));
       });
     });

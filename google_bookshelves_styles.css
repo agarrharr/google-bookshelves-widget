@@ -33,15 +33,13 @@
 }
 
 /*Grid Layout*/
-.google_bookshelves_shelf_grid
-.google_bookshelves_book {
+.google_bookshelves_book.grid {
 	display: inline;
 	margin-right: 10px;
 }
 
 /*Column Layout (also used for widget layout)*/
-.google_bookshelves_shelf_column
-.google_bookshelves_book {
+.google_bookshelves_book.column {
 	position: relative;
 	margin: 10px;
 }

@@ -5,7 +5,7 @@
   "description": "This plugin allows you to display the books in your Google Books Library",
   "main": "google-bookshelves.js",
   "authors": [
-    "Adam Harris"
+    "Adam Garrett-Harris"
   ],
   "license": "MIT",
   "ignore": [
